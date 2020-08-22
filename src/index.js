@@ -4,5 +4,5 @@ const app = require('./server'); //TRAYENDO FUNCIONES DEL SERVIDOR SERVER.JS
 require('./database');
 
 app.listen(app.get('port'), () => {
-    console.log('Server on port: ', app.get('port'))
+    console.log('Server on port:', app.get('port'))
 });
