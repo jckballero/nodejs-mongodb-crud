@@ -1,7 +1,6 @@
 const usersCtrl = {};
 
 const passport = require('passport');
-
 const User = require('../models/User');
 
 usersCtrl.renderSignUpForm = (req, res) => {
@@ -28,8 +27,12 @@ usersCtrl.signup = async(req, res) => {
             confirm_password
         })
     } else {
+        const nameUser = await User.findOne({ name: name });
         const emailUser = await User.findOne({ email: email });
-        if (emailUser) {
+        if (nameUser) {
+            req.flash('error_msg', 'The name is alredy in use');
+            res.redirect('/users/signup');
+        } else if (emailUser) {
             req.flash('error_msg', 'The email is alredy in use');
             res.redirect('/users/signup');
         } else {

@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs'); //importando modulo de cifrado
 
 const UserSchema = new Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true }
 }, {
